@@ -1,0 +1,7 @@
+[default]
+ACCESS_TOKEN_EXPIRE_MINUTES = 30
+REFRESH_TOKEN_EXPIRE_MINUTES = 600
+
+[default.db]
+uri = "postgresql+psycopg2://postgres:postgres@db:5432/socialpy"
+echo = false
