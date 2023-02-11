@@ -4,12 +4,12 @@ from fastapi import APIRouter
 from fastapi.exceptions import HTTPException
 from sqlmodel import Session, select
 
-from socialpy.utils.auth import AuthenticatedUser
 from socialpy.db.db import ActiveSession
-from socialpy.db.schemas.post import (PostRequest, PostResponse,
-                                      PostResponseWithReplies)
 from socialpy.db.models.post import Post
 from socialpy.db.models.user import User
+from socialpy.db.schemas.post import (PostRequest, PostResponse,
+                                      PostResponseWithReplies)
+from socialpy.utils.auth import AuthenticatedUser
 
 router = APIRouter()
 

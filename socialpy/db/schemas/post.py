@@ -1,6 +1,8 @@
 from datetime import datetime
-from pydantic import BaseModel, Extra
 from typing import Optional
+
+from pydantic import BaseModel, Extra
+
 
 class PostResponse(BaseModel):
     """Serializer for Post Response"""
