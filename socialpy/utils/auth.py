@@ -1,36 +1,21 @@
-"""Token absed auth"""
 from datetime import datetime, timedelta
 from typing import Callable, Optional, Union
 
 from fastapi import Depends, HTTPException, Request, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
-from socialpy.config import settings
-from socialpy.db import engine
-from socialpy.models.user import User
-from socialpy.security import verify_password
-from pydantic import BaseModel
 from sqlmodel import Session, select
 
-SECRET_KEY = settings.security.secret_key
-ALGORITHM = settings.security.algorithm
-
+from socialpy.config import settings
+from socialpy.db.db import engine
+from socialpy.db.models.user import User
+from socialpy.db.schemas import *
+from socialpy.utils.security import verify_password
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='token')
 
-
-class Token(BaseModel):
-    access_token: str
-    refresh_token: str
-    token_type: str
-
-
-class RefreshToken(BaseModel):
-    refresh_token: str
-
-
-class TokenData(BaseModel):
-    username: Optional[str] = None
+SECRET_KEY = settings.security.secret_key
+ALGORITHM = settings.security.algorithm
 
 
 def create_access_token(

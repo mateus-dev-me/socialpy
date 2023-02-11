@@ -1,6 +1,7 @@
 """Security utilities"""
-from socialpy.config import settings
 from passlib.context import CryptContext
+
+from socialpy.config import settings
 
 pwd_context = CryptContext(schemes=['bcrypt'], deprecated='auto')
 

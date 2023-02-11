@@ -2,10 +2,12 @@ from datetime import timedelta
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
-from socialpy.auth import (RefreshToken, Token, User, authenticate_user,
-                        create_access_token, create_refresh_token, get_user,
-                        validate_token)
+
 from socialpy.config import settings
+from socialpy.db.schemas.auth import RefreshToken, Token
+from socialpy.utils.auth import (User, authenticate_user, create_access_token,
+                                 create_refresh_token, get_user,
+                                 validate_token)
 
 ACCESS_TOKEN_EXPIRE_MINUTES = settings.ACCESS_TOKEN_EXPIRE_MINUTES
 REFRESH_TOKEN_EXPIRE_MINUTES = settings.REFRESH_TOKEN_EXPIRE_MINUTES

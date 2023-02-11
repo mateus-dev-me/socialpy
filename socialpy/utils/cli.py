@@ -3,9 +3,9 @@ from rich.console import Console
 from rich.table import Table
 from sqlmodel import Session, select
 
-from .config import settings
-from .db import engine
-from .models import Post, SQLModel, User
+from socialpy.config import settings
+from socialpy.db.db import engine
+from socialpy.db.models import Post, SQLModel, User
 
 main = typer.Typer(name='socialpy CLI')
 

@@ -2,9 +2,11 @@ from typing import List
 
 from fastapi import APIRouter
 from fastapi.exceptions import HTTPException
-from socialpy.db import ActiveSession
-from socialpy.models.user import User, UserRequest, UserResponse
 from sqlmodel import Session, select
+
+from socialpy.db.db import ActiveSession
+from socialpy.db.models.user import User
+from socialpy.db.schemas.user import UserRequest, UserResponse
 
 router = APIRouter()
 

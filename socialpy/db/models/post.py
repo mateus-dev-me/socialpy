@@ -3,11 +3,10 @@
 from datetime import datetime
 from typing import TYPE_CHECKING, Optional
 
-from pydantic import BaseModel, Extra
 from sqlmodel import Field, Relationship, SQLModel
 
 if TYPE_CHECKING:
-    from socialpy.models.user import User
+    from socialpy.db.models.user import User
 
 
 class Post(SQLModel, table=True):
@@ -34,31 +33,3 @@ class Post(SQLModel, table=True):
     def __lt__(self, other):
         """This enables post.replies.sort() to sort by date"""
         return self.date < other.date
-
-
-class PostResponse(BaseModel):
-    """Serializer for Post Response"""
-
-    id: int
-    text: str
-    date: datetime
-    user_id: int
-    parent_id: Optional[int]
-
-
-class PostResponseWithReplies(PostResponse):
-    replies: Optional[list['PostResponse']] = None
-
-    class Config:
-        orm_mode = True
-
-
-class PostRequest(BaseModel):
-    """Serializer for Post request payload"""
-
-    parent_id: Optional[int]
-    text: str
-
-    class Config:
-        extra = Extra.allow
-        arbitrary_types_allowed = True
