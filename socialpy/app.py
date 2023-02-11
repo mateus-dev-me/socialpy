@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from .routes import main_router
+from .api.v1 import main_router
 
 app = FastAPI(
     title='Socialpy',

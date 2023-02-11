@@ -2,9 +2,10 @@ import os
 
 import pytest
 from fastapi.testclient import TestClient
+from sqlalchemy.exc import IntegrityError
+
 from socialpy.app import app
 from socialpy.cli import create_user
-from sqlalchemy.exc import IntegrityError
 
 os.environ[
     'socialpy_DB__uri'
