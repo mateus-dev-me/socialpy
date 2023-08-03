@@ -1,0 +1,65 @@
+[tool.poetry]
+name = "socialpy"
+version = "0.1.0"
+description = ""
+authors = ["mateus-dev-me <mateusmartinsipu2@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.100.0"
+uvicorn = "^0.23.1"
+sqlalchemy = "^2.0.19"
+pydantic = "^2.1.0"
+dynaconf = "^3.2.0"
+python-multipart = "^0.0.6"
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+
+
+[tool.poetry.group.dev.dependencies]
+typer = "^0.9.0"
+rich = "^13.4.2"
+ipython = "^8.14.0"
+pytest = "^7.4.0"
+pytest-cov = "^4.1.0"
+taskipy = "^1.11.0"
+blue = "^0.9.1"
+isort = "^5.12.0"
+ruff = "^0.0.280"
+httpx = "^0.24.1"
+factory-boy = "^3.3.0"
+faker = "^19.2.0"
+freezegun = "^1.2.2"
+
+[tool.ruff]
+line-length = 79
+exclude = [
+  ".venv",
+  "migrations",
+  ".ruff_cache"
+]
+
+[tool.isort]
+profile = "black"
+line_length = 79
+
+[tool.pytest.init_options]
+pythonpath = "."
+
+[tool.blue.init_options]
+exclude = '(migrations/)' 
+
+[tool.taskipy.tasks]
+lint = 'ruff . && blue --check . --diff'
+format = 'blue . && isort .'
+run = 'uvicorn fast_zero.app:app --reload'
+clean = 'find . | grep -E "(/__pycache__$|\.pyc$|\.pyo$)" | xargs rm -rf'
+alembic = 'alembic upgrade head'
+pre_test = 'task lint && task clean'
+test = 'pytest -s -x --cov=app -vv'
+post_test = 'coverage html'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

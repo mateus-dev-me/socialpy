@@ -1,0 +1,16 @@
+[default]
+TITLE = "socialpy"
+DESCRIPION = "" 
+VERSION = "0.1.0"
+PREFIX_URL = "/api_v1" 
+ACCESS_TOKEN_EXPIRE_MINUTES = 30
+REFRESH_TOKEN_EXPIRE_MINUTES = 600
+
+[development]
+DEBUG = true
+DATABASE_URL = "sqlite://database.db"
+ECHO = true
+
+[production]
+DEBUG = false
+ECHO = false
